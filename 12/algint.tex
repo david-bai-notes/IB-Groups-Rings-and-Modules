@@ -1,0 +1,102 @@
+\section{Algebraic Integers}
+\subsection{The Gaussian Integers}
+Recall the ring of Gaussian integers $\mathbb Z[i]=\{a+bi:a,b\in\mathbb Z\}\le\mathbb C$ is a ED due to the norm $N(a+bi)=a^2+b^2$.
+Hence $\mathbb Z[i]$ is a PID hence UFD.
+In particular irreducibles and primes are the same.
+The units in $\mathbb Z[i]$ are $\pm 1,\pm i$ by the norm $N$.
+By convention, primes in $\mathbb Z$ are positive (since others are associates to them), but there is no corresponding convention in the Gaussian Integers.
+\begin{lemma}
+    If $\pi\in\mathbb Z[i]$ is prime, then there is a unique prime $p\in\mathbb Z$ with $\pi|p$.
+\end{lemma}
+\begin{proof}
+    Since $\pi$ is nonzero and nonunit, we can write $N(\pi)=p_1\cdots p_n$ where $p_i\in\mathbb Z$ are (not necessarily distinct) primes.
+    But $\pi|\pi\bar\pi=N(\pi)=p_1\cdots p_n$, so there is some $i$ such that $\pi|p_i$.\\
+    For uniqueness, if $\pi|p,\pi|q$ with $p,q$ distinct primes in $\mathbb Z$, then there is some $a,b\in\mathbb Z$ such that $ap+bq=1$, so $\pi|1$, so $\pi$ is a unit, contradiction.
+\end{proof}
+\begin{lemma}
+    Let $p\in\mathbb Z$ be a prime in $\mathbb Z$, then the followings are equivalent:\\
+    1. $p$ is not prime in $\mathbb Z[i]$.\\
+    2. $p$ can be written as the sum of two squares.\\
+    3. $p=2$ or $p\equiv 1\pmod{4}$.
+\end{lemma}
+\begin{proof}
+    $1\implies 2$: Write $p=xy$ where $x,y\in\mathbb Z[i]$ are not unit, then $p^2=N(p)=N(x)N(y)$.
+    But $x,y$ are not unit hence have $\ge 1$ norm, therefore $N(x)=N(y)=p$, so $p$ is the sum of two squares.\\
+    $2\implies 3$: Obvious.\\
+    $3\implies 1$: $2=(1-i)(1+i)$, so $2$ is not prime.
+    Otherwise, for $p\equiv 1\pmod{4}$, then $-1=x^2\pmod{p}$ is solvable, so $p|(x+i)(x-i)$.
+    If $p$ is prime in $\mathbb Z[i]$, then either $p|x+i$ or $p|x-i$, none of which can happen.
+\end{proof}
+\begin{theorem}
+    1. Every prime $p\equiv 1\pmod{4}$ in $\mathbb Z$ is the sum of two integer squares $p=a^2+b^2$.\\
+    2. Primes in the Gaussian Integers (up to associates) are $1+i$, primes in $\mathbb Z$ which congruent to $3\bmod{4}$, and $a\pm bi$ where $a,b$ are as in 1.
+\end{theorem}
+\begin{proof}
+    1. The preceding lemma.\\
+    2. Let $\pi\in\mathbb Z[i]$ be prime in $\mathbb Z[i]$, then $\pi|p$ for some prime $p\in\mathbb Z$.
+    If $p\equiv 3\pmod{4}$, then $p$ is prime in $\mathbb Z[i]$ and $\pi,p$ are associates.\\
+    Otherwise, $p=(a+ib)(a-ib)$ by the preceding lemma, so each of $a\pm ib$ has norm $p$ hence is prime, so $\pi$ is associate to one of $a\pm ib$.
+    Note that $1+i,1-i$ are associates but $a\pm ib$ are not associates otherwise by simple calculation.
+    This completes the proof.
+\end{proof}
+\begin{corollary}
+    Any integer $n\ge 1$ is a sum of two squares iff every prime factor $p$ of $n$ with $p\equiv 3\pmod{4}$ divides $n$ to an even power.
+\end{corollary}
+\begin{proof}
+    $\exists a,b\in\mathbb Z, n=a^2+b^2$ if and only if $n=N(x)$ for some $x\in\mathbb Z[i]$, which happens iff $n$ is a product of norms of primes in $\mathbb Z[i]$, but by preceding theorem, the norms of primes in $\mathbb Z[i]$ are either primes in $\mathbb Z$ or the squares of primes congurent to $3\bmod 4$.
+\end{proof}
+\begin{example}
+    $65=5\cdot 13$, so $65$ is a sum of two squares.
+    Indeed $65=1+64=1+8^2$ does it.
+    Another way to get this sum is to write $65=(2+i)(2-i)(2+3i)(2-3i)=|(2+i)(2+3i)|^2=|1+8i|^2=1+8^2$.
+    We also have $65=|(2+i)(2-3i)|^2=|7-4i|^2=7^2+4^2$.
+\end{example}
+\subsection{Algebraic Integers}
+\begin{definition}
+    Suppose $R\le S$ are rings.
+    Given $\alpha\in S$, we write $R[\alpha]$ for the smallest subring of $S$ containing both $R$ and $\alpha$.
+\end{definition}
+We know that such a subring exists since we can collect all the candidates and take their intersection.
+In fact, $R[\alpha]=\phi(R[X])$ where $\phi:R[X]\to S$ is the evaluation homomorphism $f(X)\mapsto f(\alpha)$.
+\begin{definition}
+    If $R\le S$ are fields and $\alpha\in S$, we write $R(\alpha)$ to denote the smallest subfield of $S$ containing $R$ and $\alpha$.
+\end{definition}
+So $R(\alpha)$ is simply the field of fraction of $R[\alpha]$.
+\begin{definition}
+    1. $\alpha\in\mathbb C$ is an algebraic number if $\exists f\in\mathbb Q[X]\setminus\{0\},f(\alpha)=0$.\\
+    2. $\alpha\in\mathbb C$ is an algebraic integer if $\exists f\in\mathbb Z[X]$ such that the leading coefficient of $f$ is $1$ with $f(\alpha)=0$.
+\end{definition}
+Let $\alpha$ be an algebraic number and $\phi:\mathbb Q[X]\to\mathbb C$ be the evaluation $f[X]\mapsto f(\alpha)$, then since $\mathbb Q[X]$ is a PID, $\ker\phi=(f)$ for some $f\in\mathbb Q[X]$.
+Since $\alpha$ is an algebraic number, $f\neq 0$.
+We may assume that $f$ is monic (since $\mathbb Q$ is a field), so we say $f$ is the minimal polynomial of $\alpha$.
+By the isomorphism theorem, we have $\mathbb Q[X]/(f)\cong \mathbb Q[\alpha]\le\mathbb C$.\\
+But $\mathbb Q[\alpha]$ is hence a integral domain, which means that $f$ is prime (hence irreducible as $\mathbb Q[X]$ is a UFD), therefore $(f)$ is maximal (since $\mathbb Q[X]$ is a PID), which means that $\mathbb Q[\alpha]=\mathbb Q(\alpha)$.
+\begin{lemma}
+    Let $\alpha$ be an algebraic number with minimal polynomial $f\in\mathbb Q[X]$.
+    Write $f=\lambda f_0$ where $\lambda\in\mathbb Q^\times$ and $f_0\in\mathbb Z[X]$ is primitive.
+    Then the ring homomorphism given by $\phi:\mathbb Z[X]\to\mathbb C$ by $g(X)\mapsto g(\alpha)$ has $\ker\phi=(f_0)$.
+\end{lemma}
+\begin{proof}
+    Clearly $\phi(f_0)=f_0(\alpha)=\lambda^{-1}f(\alpha)=0$, so $(f_0)\subset\ker\phi$.
+    Suppose we have some other $g\in\ker\phi$, then $f|g$ in $\mathbb Q[X]$ and hence $f_0|g$ in $\mathbb Q[X]$, but then $f_0|g$ in $\mathbb Z[X]$ by Lemma \ref{primitive_div_fof}, therefore $g\in(f_0)$.
+\end{proof}
+Suppose further that $\alpha$ is an algebraic integer, then $\ker\phi=(f_0)\lhd\mathbb Z[X]$.
+But by definition of algebraic integer $(f_0)$ contains a monic polynomial, which must mean that one of $\pm f_0$ is monic.
+We have $f=\lambda f_0$ with the assumption that $f$ is monic, so $\lambda=\pm 1$, so $f\in\mathbb Z[X]$.
+Consequently, we get $\mathbb Z[X]/(f_0)=\mathbb Z[X]/(f)\cong \mathbb Z[\alpha]\le\mathbb C$.
+\begin{example}
+    $i,\sqrt{2},(-1+\sqrt{3})/2,\sqrt[n]{p}$ are all algebraic integers and indeed their minimal polynomials are $X^2+1,X^2-2,X^2+X+1,X^n-p$.
+    In particular, $\mathbb Z[X]/(X^2+1)\cong\mathbb Z[i]$.
+\end{example}
+\begin{lemma}
+    An algebraic number $\alpha\in\mathbb C$ is an algebraic integer if and only if its minimal polynomial (which by convention is monic) has integer coefficients.
+\end{lemma}
+\begin{proof}
+    Immediate.
+\end{proof}
+\begin{corollary}
+    If $\alpha$ is an algebraic integer and $\alpha\in\mathbb Q$, then $\alpha\in\mathbb Z$.
+\end{corollary}
+\begin{proof}
+    By preceding lemma.
+\end{proof}

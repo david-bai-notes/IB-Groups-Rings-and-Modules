@@ -1,0 +1,120 @@
+\section{Group Actions}
+\begin{definition}
+    Let $X$ be a set and let $\operatorname{Sym}X$ be the group of all bijections $X\to X$ under composition.
+\end{definition}
+\begin{definition}
+    A group $G$ is a permutation group if it is a subgroup of $\operatorname{Sym}X$ for some set $X$.
+    We say it is a permutation group of degree $n$ if $X$ is finite and $|X|=n$.
+\end{definition}
+\begin{example}
+    1. $S_n=\operatorname{Sym}\{1,2,\ldots,n\}$ is a permutation group of degree $n$.
+    So is $A_n$.\\
+    2. The group $D_{2n}$ is a permutation group of degree $n$ by thinking about the way it transforms the vertices of a regular $n$-gon.
+\end{example}
+\begin{definition}
+    Let $G$ be a group and $X$ be a set.
+    An action of $G$ on $X$ is a function $\star:G\times X\to X$ satisfying:\\
+    1. $\forall x\in X,1\star x=x$.\\
+    2, $\forall g,h\in G,x\in X,(gh)\star x=g\star (h\star x)$.
+\end{definition}
+\begin{proposition}
+    An action $\star:G\times X\to X$ is equivalent to a homomorphism $\phi:G\to\operatorname{Sym}X$.
+\end{proposition}
+\begin{proof}
+    Take $\phi(g)(x)=g\star x$.
+\end{proof}
+\begin{definition}
+    We say such a homomorphism $\phi$ a permutation representation of $G$.
+\end{definition}
+In particular, if $\phi$ is injective, then $G$ is isomorphic to a subgroup of $\operatorname{Sym}X$.
+\begin{definition}
+    Let $\star:G\times X\to X$ be a group action, then the orbit of an element $x\in X$ is defined by
+    $$\operatorname{Orb}_G(x)=\{g\star x:g\in G\}$$
+    The stabiliser of it is defined by
+    $$G_x=\{g\in G:g\star x=x\}$$
+\end{definition}
+\begin{theorem}
+    Let $\star:G\times X\to X$ be a group action, then for any $x\in X$ there is a bijection $\operatorname{Orb}_G(x)\to G/G_x$.
+\end{theorem}
+\begin{proof}
+    Take $g\star x\mapsto gG_x$.
+\end{proof}
+\begin{corollary}
+    If $G$ is finite, then $|\operatorname{Orb}_G(x)||G_x|=|G|$.
+\end{corollary}
+\begin{proof}
+    Follows directly.
+\end{proof}
+\begin{remark}
+    1. $\ker\phi=\bigcap_{x\in X}G_x$ is called the kernel of the action.\\
+    2. The orbits partition $X$.
+    If there is only one orbit, then we say the action is transitive.\\
+    3. The stabilisers of $x,y$ in the same orbit are conjugate subgroups of each other.
+    That is, $G_{g\star x}=gG_xg^{-1}$.
+\end{remark}
+\begin{example}
+    1. Given a group $G$, it can act on itself by left multiplication.
+    This is called the left regular action.
+    The kernel of the action is obviously just the identity.
+    So the induced permutation representation makes $G$ isomorphic to a subgroup of $\operatorname{Sym}G$.
+    In particular, if $|G|=n$, then $G$ is isomorphic to a subgroup of the symmetric group $S_n$.
+    This is known as Cayley's Theorem.\\
+    2. Consider a group $G$ and a subgroup $H\le G$, then $G$ can act on $G/H$ by left multiplication.
+    This action is transitive.
+    Also the stabiliser of $xH$ is $xHx^{-1}$, so the kernel of the action becomes $\bigcap_{x\in X}xHx^{-1}$, the largest normal subgroup of $G$ contained in $H$.\\
+    3. Let $G$ acts on itself by conjugation, so $g\star x=gxg^{-1}$.
+    In this case, the orbit containing $x$ is called the conjugacy class containing $x$, $\operatorname{ccl}_G(x)$, and the stabiliser of $x$ is called the centraliser $C_G(x)$ of $x$.
+    The kernel $Z(G)$ of the action is called the centre of $G$.
+    Note that $G$ can also act by conjugation on any of its normal subgroup.\\
+    4. Let $X$ be the set of subgroups of the group $G$, then $G$ acts on $X$ by conjugation: $g\star H=gHg^{-1}$.
+    So the stabiliser of $H$ is called the normalizer $N_G(H)$ of $H$.
+    It is the largest subgroup of $G$ to contain $H$ as a normal subgroup.
+\end{example}
+\begin{theorem}
+    Let $G$ be a nonabelian simple group, and $H<G$ has index $n>1$, then $n\ge 5$ and $G$ is isomorphic to a subgroup of $A_n$.
+\end{theorem}
+\begin{proof}
+    Consider the action of $G$ acting on the set of left cosets of $H$ by left multiplication.
+    This gives a homomorphism $\phi:G\to S_n$.
+    But $\ker\phi$ is normal in $G$.
+    It is obviously not the entire group, so $\phi$ has to be injective, so $G$ is isomorphic to a subgroup of $S_n$.
+    We know that $A_n\lhd S_n$, so $A_n\cap G\lhd G$, so either $G\subset A_n$ or $G\cap A_n=1$ since $G$ is simple.
+    If $G\cap A_n=1$, we have $G\cong G/(G\cap A_n)\cong GA_n/A_n\le S_n/A_n\cong C_2$ by Second Isomorphism Theorem, contradiction.\\
+    Therefore $G\le A_n$.
+    Finally if $n\le 4$, $A_n$ does not have a nonabelian simple subgroup by simple exhaustion.
+    So $n\ge 5$.
+\end{proof}
+\begin{example}
+    Consider the group of rotational symmetries of the icosahedron with $20$ faces, $12$ vertices and $30$ edges with each face an equilateral triangle.
+    We have the following table
+    \begin{center}
+        \begin{tabular}{c|c}
+            order&number\\
+            \hline
+            $1$&$41$\\
+            $2$&$15$\\
+            $3$&$20$\\
+            $5$&$24$\\
+            \hline
+            total&$60$
+        \end{tabular}
+    \end{center}
+    Note that $G$ acts on the set of vertices transitively, so $|G|=12\times 5=60$, hence these are all.\\
+    The elements of order $2$ are all conjugates, same for elements of order $3$.
+    The elements of order $5$ splits into two conjugacy classes, each of size $12$.\\
+    If $H\lhd G$, then it must be a union of conjugacy classes including the identity one, but they must have a sum that divides $60$.
+    One can check that it can happen iff $H$ is trivial.
+    Thus $G$ is simple.\\
+    We want to show that $G$ is isomorphic to $A_5$.
+    We claim that the set of subgroups $H$ of order $4$ removing the identity partitions the $16$ elements of order at most $2$.
+    Note that we must have $H\cong C_2\times C_2$ since $G$ does not have element of order $4$, so each such subgroups contains $3$ involutions.
+    If $g\in G$ has order $2$, then $g\in C_G(g)$, so $|C_G(g)|=|G|/|\operatorname{ccl}_G(g)|=4$, so every involution is contained in a subgroup of order $4$.\\
+    Suppose $1\neq g\in H\cap K$ where $H,K$ are subgroups of order $4$.
+    But the centralizer of $g$ has order $4$ and contains both $H$ and $K$ since $H,K$ are abelian, but they all have size $4$, hence $H=K$.\\
+    Let $G$ act on the $5$ subgroups of order $4$ by conjugation.
+    This gives a homomorphism $\phi:G\to\operatorname{Sym}(X)\cong S_5$, but since $G$ is simple, $\phi$ is injective.
+    So $G\le S_5$.
+    But again $G\cap A_5$ can only be $A_5$ by exactly the same trick as the proof of the preceding theorem.
+    Since $|G|=|A_5|=60$, we have $G=A_5$.
+ \end{example}
+ 

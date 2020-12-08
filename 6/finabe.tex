@@ -1,0 +1,34 @@
+\section{The Classification of Finite Abelian Groups}
+We will prove (the generalization of) the following theorem later when we look at modules:
+\begin{theorem}\label{classify_fin_abe}
+    Every finite abelian group is isomorphic to a product of cyclic groups.
+\end{theorem}
+In this section, we shall look at the uniqueness criterion of this statement.
+In fact, this representation is not unique in general, but we can get some sort of a uniqueness statement.
+\begin{lemma}
+    If $m,n$ are coprime, then $C_m\times C_n\cong C_{mn}$.
+\end{lemma}
+\begin{proof}
+    Let $g_m$ be the generator of $C_m$ and $g_n$ be that of $C_n$, then $(g_m,g_n)\in C_m\times C_n$ has order $\gcd(m,n)=mn$.
+\end{proof}
+\begin{corollary}
+    Let $G$ be a finite abelian group, then $G\cong C_{n_1}\times C_{n_2}\times\cdots\times C_{n_k}$ such that any $n_i$ is a prime power
+\end{corollary}
+\begin{proof}
+    Let $n$ be a positive integer, then $n=p_1^{e_1}\cdots p_r^{e_r}$ where $p_i$ are distinct primes, then
+    $$C_n\cong C_{p_1^{e_1}}\times \cdots\times C_{p_r^{e_r}}$$
+    by the preceding lemma.
+    Combining this with the theorem gives the result.
+\end{proof}
+In fact, what we will prove is the following refinement of Theorem \ref{classify_fin_abe}.
+\begin{theorem}\label{fin_abe_struct}
+    Let $G$ be a finite abelian group, then $G\cong C_{d_1}\times C_{d_2}\times\cdots\times C_{d_t}$ such that $1<d_1|d_2|d_3|\cdots|d_{t-1}|d_t$.
+\end{theorem}
+\begin{remark}
+    The integers $n_1,n_2,\ldots$ are up to a reordering, and $d_1,d_2,\ldots$ are uniquely determined by the group $G$.
+    The proof (which we omit) works by counting the elements of $G$ with every possible order (it is enough to consider prime powers though).
+\end{remark}
+\begin{example}
+    1. Abelian groups of order $8$ can only be $C_8,C_2\times C_4,C_2\times C_2\times C_2$.\\
+    2. Abelian groups of order $12$ can only be $C_2\times C_2\times C_3\cong C_2\times C_6,C_4\times C_3\cong C_{12}$
+\end{example}

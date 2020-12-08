@@ -1,0 +1,105 @@
+\section{(Sub-)Groups with prime power order}
+\subsection{Elementary Properties}
+\begin{definition}
+    Let $G$ be a group.
+    We say $G$ is a $p$-group for a prime $p$ if $|G|=p^n$ for some $n\in\mathbb N$.
+\end{definition}
+\begin{theorem}
+    Let $G$ be a $p$-group, then $Z(G)\neq 1$.
+\end{theorem}
+\begin{proof}
+    Consider the partition of $G$ by conjugacy classes, which are either $1$ or divisible by $p$.
+    Note that $Z(G)$ is the union of all $1$-classes.
+    But if $|Z(G)|=1$, then
+    $$0\equiv p^n=|G|=1+\sum_{\exists g\notin Z(G),C=\operatorname{ccl}_G(g)}|C|\equiv 1\pmod{p}$$
+    which is a contradiction.
+\end{proof}
+In particular $|Z(G)|\equiv 0\pmod{p}$.
+\begin{corollary}[Classification of Simple $p$-groups]
+    If $G$ is a simple $p$-group, then $G\cong C_p$.
+\end{corollary}
+\begin{proof}
+    $1\neq Z(G)\unlhd G$.
+    Since $G$ is simple we must have $Z(G)=G$, hence $G$ is abelian, but then necessarily $G\cong C_p$ since $G$ cannot have any proper subgroup to be simple.
+\end{proof}
+\begin{corollary}
+    Let $G$ be a $p$-group of order $p^n$, then $G$ contains an element of order $p^r$ for any $0\le r\le n$.
+\end{corollary}
+\begin{proof}
+    Consider the composition series of $G$
+    $$1=G_0\lhd G_1\lhd\cdots\lhd G_m=G$$
+    Where $G_{i+1}/G_i$ is simple.
+    But it is an $p$-group, so we must have $G_{i+1}/G_i\cong C_p$ for any $i$.
+    The claim follows.
+\end{proof}
+\begin{lemma}
+    For $G$ a group.
+    If $G/Z(G)$ is cyclic, then $G$ is abelian.
+\end{lemma}
+\begin{proof}
+    Let $gZ(G)$ be a generator of $G/Z(G)$.
+    Then every element of $G$ is of the form $p^iz$ where $z\in Z$.
+    But for $z,z'\in Z(G)$, $g^izg^jz'=g^{i+j}zz'=g^jz'g^iz$, so $G$ is abelian.
+\end{proof}
+\begin{corollary}
+    If $G$ has order $p^2$ for a prime $p$, then $G$ is abelian.
+\end{corollary}
+\begin{proof}
+    We already know that $Z(G)\neq 1$.
+    For $|Z(G)|=p$ then we have $G/Z(G)\cong C_p$, so $G$ is abelian by the preceding lemma, contradiction.
+    For $|Z(G)|=p^2$ we have $Z(G)=G$, which means that $G$ is abelian.
+    There are no other possibilities, so the proof is done.
+\end{proof}
+Sadly (or not) there are nonabelian groups of order $p^3$.
+\subsection{Sylow's Theorems}
+\begin{theorem}[Sylow's Theorems]
+    Let $G$ be a finite group with order $p^am$ where $p$ is a prime and $p\nmid m$.
+    Then\\
+    1. The set $\operatorname{Syl}_p(G)=\{P\le G:|P|=p^a\}$ is nonempty.\\
+    2. All elements of $\operatorname{Syl}_p(G)$ are conjugate.\\
+    3. The number $n_p=|\operatorname{Syl}_p(G)|$ satisfies $n_p\equiv 1\pmod{p}$ and $n_p|m$.
+\end{theorem}
+\begin{corollary}
+    If $n_p=1$, then there is a normal Sylow $p$-subgroup.
+\end{corollary}
+\begin{proof}
+    Let $g\in G$ and $P$ be a Sylow $p$-subgroup of $G$.
+    But then $gPg^{-1}\in\operatorname{Syl}_p(G)=\{P\}$, hence $gPg^{-1}=P\implies P\unlhd G$.
+\end{proof}
+\begin{example}
+    There is no simple group of order $1000$.
+    Suppose $G$ is a group of order $1000=2^35^3$, then $n_5\equiv 1\pmod{5}$ and $n_5|8$, but then we must have $n_5=1$.
+    So there is a normal Sylow $5$-subgroup of $G$ which is obviously not the identity or $G$, hence $G$ is not normal.
+\end{example}
+\begin{proof}
+    1. Consider the action of the group $G$ on the set $\Omega$ of all subsets of $G$ of size $p^a$ by $g\star X=\{gx:x\in X\}$, so
+    $$|\Omega|=\binom{p^am}{p^a}\not\equiv 0\pmod{p}$$
+    Hence this action has an orbit, say the orbit of $X\in\Omega$, which order is not a multiple of $p$.
+    Then $|G_X||\operatorname{orb}_G(X)|=|G|=p^am$, so $p^a||G_X|$.
+    On the other hand, $\bigcup_{g\in G}g\star X=G$, so $|G|\le |\operatorname{orb}_G(X)||X|$, so $|G_X|=|G|/|\operatorname{orb}_G(X)|\le |X|=p^a$, but $|G_X|\ge p^a$, therefore $|G_X|=p^a$.\\
+    2. We shall prove a stronger statement: suppose $P\in\operatorname{Syl}_p(G)$ and $Q\le G$ a $p$-subgroup, then $Q\le gPg^{-1}$ for some $g\in G$.
+    Consider the action of $Q$ on the set of left cosets $G/P$ by left multiplication.
+    By orbit-stabiliser, any orbit divides $|Q|$, so its size must be either $1$ or a multiple of $p$.
+    But $|G/P|=m$ which is coprime to $p$, hence there is at least one orbit $\operatorname{orb}_Q(gP)$ of size $1$, so for any $q\in Q$, $g^{-1}qg\in P\implies Q\le gPg^{-1}$.\\
+    3. Let $G$ act transitively (by 2) on $\operatorname{Syl}_p(G)$ by conjugation.
+    So by orbit-stabiliser, $n_p||G|$, so it suffices to show $n_p\equiv 1\pmod{p}$.
+    Now let $P\in\operatorname{Syl}_p(G)$ and consider its action on $\operatorname{Syl}_p(G)$ by conjugation.
+    Now the orbits divides $|P|=p^a$, so is either $1$ or divisible by $p$.
+    We shall show that there is exactly one orbit of size $1$, which will establish the theorem.
+    There is at least one orbit, namely $\operatorname{orb}_P(P)$.
+    If $\operatorname{orb}_P(Q)$ is also an orbit of size $1$, then $P\le N_G(Q)$.
+    Now $P,Q$ are Sylow $p$-subgroups of $N_G(Q)$, so they are conjugate by 2, therefore there is some $g\in N_G(Q)$ with $Q=gQg^{-1}=P$.
+    The theorem is hence proved.
+\end{proof}
+\begin{example}
+    Suppose $G$ is a simple group, then $|G|\neq 132$.
+    Assume there is a simple group of order $132=2^2\cdot 3\cdot 11$, then by Sylow's Third Theorem, $n_3=1,4,22$ and $n_{11}=1,12$, but by simplicity neither of them is $1$, so $n_{11}=12$
+    If $n_3=4$, then letting $G$ act on $\operatorname{Syl}_3(G)$ by conjugation gives a group homomorphism $G\to S_4$, but its kernel is not all $G$, so $G$ is isomorphic to a subgroup of $S_4$, but $|S_4|=24<132$, contradiction.\\
+    So $n_3=22$.
+    Now the Sylow $3$-subgroups are all of order $3$, this means that there are $22\times (3-1)=44$ elements of order $3$.
+    Similarly $n_{11}=12$ gives $(11-1)\times 12=120$ elements of order $11$, but then $132=|G|\ge 120+44+1=165$, contradiction.
+\end{example}
+For sake of problem sheets, we mention the following definition.
+\begin{definition}
+    An automorphism $\operatorname{Aut}(G)\le\operatorname{Sym}G$ of a group $G$ is the group of all isomorphisms from $G$ to itself.
+\end{definition}

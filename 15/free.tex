@@ -1,0 +1,66 @@
+\section{Direct Sums and Free Modules}
+\begin{definition}
+    If $M_1,\ldots,M_n$ are $R$-modules, then their direct sum $M_1\oplus\cdots\oplus M_n$ is the set $M_1\times \cdots\times M_n$ with entry-wise addition and scalar multiplications.
+\end{definition}
+\begin{example}
+    1. $R^n$ is simply $R\oplus\cdots\oplus R$ of $n$ copies of $R$.\\
+    2. If $M_1,M_2\le M$, then the $R$-module homomorphism $M_1\oplus M_2\to M$ by $(m_1,m_2)\mapsto m_1+m_2$ is an isomorphism iff $M_1\cap M_2=\varnothing$ and $M_1+M_2=M$.
+\end{example}
+\begin{lemma}
+    If $M=\bigoplus_{i=1}^nM_n$, and $N_1\le M_i$.
+    Take $N=\bigoplus_{i=1}^nN_i$, then
+    $$M/N\cong\bigoplus_{i=1}^nM_i/N_i$$
+\end{lemma}
+\begin{proof}
+    Apply the first isomorphism theorem to the surjective $R$-module map $\phi:M\to\bigoplus_{i=1}^nM_i/N_i$ by $(m_1,\ldots,m_n)\mapsto(m_1+N_1,\ldots,m_n+N_n)$.
+\end{proof}
+\begin{example}
+    Taking $R=\mathbb Z$ then $\mathbb Z^2=\mathbb Z\oplus \mathbb Z$, then we have $(\mathbb Z\oplus\mathbb Z)/(m\mathbb Z\oplus n\mathbb Z)\cong(\mathbb Z/m\mathbb Z)\oplus(\mathbb Z/n\mathbb Z)$.
+\end{example}
+\begin{definition}
+    Let $m_1,\ldots,m_n\in M$.
+    The set $\{m_1,\ldots,m_n\}$ is independent if $r_1m_1+\cdots +r_nm_n=0\implies \forall i,r_i=0$.
+\end{definition}
+\begin{definition}
+    A subset $S$ of an $R$-module $M$ generates $M$ freely if $S$ generates $M$ and any function $\psi:S\to N$ for another $R$-module $N$ extends to an $R$-module homomorphism $M\to N$.
+\end{definition}
+Note that if such an extension exists then it is necessarily unique.
+\begin{definition}
+    A freely-generated $R$-module is called a free $R$-module.
+    The corresponding $S$ is called the free basis.
+\end{definition}
+\begin{proposition}
+    For an $R$-module $M$ and a subset $S=\{m_1,\ldots,m_n\}\subset M$, the followings are equivalent:\\
+    1. $S$ generates $M$ freely.\\
+    2. $S$ generates $M$ and $S$ is independent.\\
+    3. Every $m\in M$ can be written uniquely in the form $m=r_1m_1+\cdots +r_nm_n$ for $r_1,\ldots,r_n\in R$.\\
+    4. The $R$-module homomorphism $R^n\to M$ by $(r_1,\ldots,r_n)\mapsto r_1m_1+\ldots r_nm_n$ is an isomorphism.
+\end{proposition}
+\begin{proof}
+    $1\implies 2$: We already knows that $S$ generates $M$, so it suffices to show that $S$ is independent.
+    Suppose for sake of contradiction that $r_1m_1+\ldots+r_nm_n=0$ for some $r_i\in R$ and some $r_j$ is nonzero.
+    Consider the function $\psi:S\to R$ by $m_j\mapsto 1$ and $m_i\mapsto 0$ for any $i\neq j$.
+    Suppose this extends to an $R$-module map $\theta:M\to R$, then $0=\theta(0)=\theta(r_1m_1+\cdots +r_nm_n)=r_j$, contradiction.\\
+    Remaining implications $2\implies 3\implies 1$ and $3\iff 4$ are just as easy if not easier.
+\end{proof}
+Sadly not all $R$-modules are free.
+Even if it is, the free basis does not behave like what we expect from a vector space.
+\begin{example}[non-example]
+    1. Suppose we have a nontrivial finite abelian group $A$, then $A$ is not free as a $\mathbb Z$-module since it is not isomorphic to $\mathbb Z^n$ which is infinite.\\
+    2. The set $\{2,3\}\subset\mathbb Z$ generates $\mathbb Z$ as a $\mathbb Z$-module, but it is not independent and no subset of it gives a free basis.
+\end{example}
+\begin{proposition}[Theorem on Invariant of Dimension]
+    Let $R$ be a nonzero ring.
+    If $R^m\cong R^n$ as $R$-modules, then $m=n$.
+\end{proposition}
+We introduce the following general construction: Let $R$ be a ring and $I\unlhd R$ and $M$ is an $R$-module.
+We write $IM=\{im:i\in I,m\in M\}\le M$.
+Then the quotient $M/(IM)$ is an $R/I$ module by $(r+I)(m+IM)=rm+IM$.
+Also by Zorn's Lemma, for any proper ideal $I$ in a ring $R$, there is a maximal ideal containing $I$ (this is obvious when $R$ is Noetherian).
+\footnote{I think we can prove the proposition without using AC (or equivalence)}
+\begin{proof}
+    Return to our proof, suppose $R^m\cong R^n$.
+    Choose $I\unlhd R$ maximal, then we have
+    $$(R/I)^m\cong R^m/(IR^m)\cong R^n/(IR^n)\cong (R/I)^n$$
+    But $R/I$ is a field, so $m=n$.
+\end{proof}

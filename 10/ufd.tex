@@ -1,0 +1,197 @@
+\section{Factorization in Integral Domains}
+In this section, $R$ will always denote an integral domain.
+\subsection{Prime and Irreducible Elements}
+\begin{definition}
+    $a\in R$ is said to divide $b\in R$, written as $a|b$, if $\exists c\in R,b=ac$.
+    Or equivalently, $(b)\subset (a)$.\\
+    $a,b\in R$ are associates if $a=bc$ for some unit $c\in R$.
+    Equivalently, $(a)=(b)$.\\
+    $r\in R$ is irreducible if it is nonzero and not a unit, also $ab=r$ implies at least one of $a,b$ is a unit.
+    It is prime if it is nonzero and not a unit, and $r|ab\implies r|a\lor r|b$.
+\end{definition}
+Note that these properties depend on the underlying ring $R$.
+For example, $2$ is irreducible and prime in $\mathbb Z$ but not in $\mathbb Q$.
+Also $2X$ is irreducible in $\mathbb Q[X]$ but not in $\mathbb Z[X]$.
+\begin{lemma}
+    For a $r\in R$, $(r)$ is prime iff $r=0$ or $r$ is prime.
+\end{lemma}
+\begin{proof}
+    If $(r)$ is prime and $r\neq 0$, then since $(r)$ is proper $r$ is not a unit, and if $r|ab$, then $ab\in (r)$, so $a\in (r)$ or $b\in (r)$, so $r|a$ or $r|b$, so $r$ is prime.\\
+    Conversely, $(0)$ is prime and for $r$ a prime, $ab\in (r)\implies r|ab\implies r|a\lor r|b\implies a\in (r)\lor b\in (r)$, so $(r)$ is a prime ideal.
+\end{proof}
+One find that an integer is maximal iff it is prime.
+We want to generalize this to some other integral domains.
+\begin{lemma}
+    A prime element is irreducible.
+\end{lemma}
+\begin{proof}
+    Suppose $r\in R$ is prime, then it is nonzero and not a unit.
+    If $r=ab$, then $r|a$ or $r|b$.
+    WLOG $r|a$, then $a=rc$ for some $c\in R$, then $r=rcb\implies r(cb-1)=0$, but $r\neq 0$, so $cb=1$, hence $b$ is unit.
+    Therefore $r$ is irreducible.
+\end{proof}
+The converse, sadly, does not hold in general.
+\begin{example}[Non-example]
+    Let $R=\mathbb Z[\sqrt{-5}]$, which is the subring of the field $\mathbb C$, hence is an integral domain.
+    Define the norm $N:R\to\mathbb Z_{\ge 0}$ by $a+b\sqrt{-5}\mapsto a^2+5b^2$, which one can verify is multiplicative and $N(r)=1\implies r=\pm 1$.
+    Now the only units in $R$ are $\pm 1$.
+    Indeed if $rs=1$, then $1=N(rs)=N(r)N(s)$, so $N(r)=N(s)=1$, so $r,s\in\{\pm 1\}$.\\
+    We claim that $2$ is irreducible in $R$.
+    Suppose $2=rs$, then $N(r)N(s)=N(rs)=4$, but one can show that there is no element with norm $2$, so one of $N(r),N(s)$ must be $1$, which means that it is a unit.
+    Similarly, $3,1+\sqrt{-5},1-\sqrt{-5}$ are all irreducible using exactly the same way.
+    However, $(1+\sqrt{-5})(1-\sqrt{-5})=6=2\cdot 3$, but neither $1+\sqrt{-5}$ nor $1-\sqrt{-5}$ is divisible by $2$ (by either taking norms or finding out directly), therefore $2$ is not prime.
+\end{example}
+Also, in this particular ring $R$, unique Factorization fails as we can factorize $6$ into two different products of irreducibles which cannot be saved by multiplying a unit.
+\subsection{Principal Ideal Domains}
+\begin{definition}
+    An integral domain $R$ is a principal ideal domain (PID) if every ideal of $R$ is principal.
+\end{definition}
+\begin{example}
+    $\mathbb Z$ is a PID.
+\end{example}
+We will later show that $\mathbb Z[i]$ and $\mathbb F[X]$ for a field $\mathbb F$ are also PIDs.
+\begin{lemma}
+    Let $0\neq r\in R$, if $(r)$ is maximal, then $r$ is irreducible.
+    If $R$ is a PID, then the converse holds.
+\end{lemma}
+\begin{proof}
+    We have $(r)\neq 0,R$ by assumption, so $r$ is neither $0$ or a unit.
+    If $r=ab$ for some $a,b\in R$, then $(r)\subset (a)\subset R$.
+    Hence $(a)=R$ so $a$ is a unit, or $(r)=(a)$, therefore $r=au$ for a unit $u$.
+    So $au=ab\implies b=u$ is a unit.
+    Hence $r$ is irreducible.
+    Conversely, given that $R$ is a PID, suppose $r$ is irreducible, then if $(r)\subset J\subset R$ for some ideal $J=(a)$ for some $a\in R$.
+    Then $r=ab$ for some $b\in R$, but $r$ is irreducible, so either $b$ is a unit whence $(r)=(a)=J$, or $a$ is a unit whence $J=R$, therefore $(r)$ is maximal.
+\end{proof}
+\begin{proposition}
+    Let $R$ be a PID, every irreducible element is prime.
+\end{proposition}
+\begin{proof}[First proof]
+    Start with an irreducible $p\in R$.
+    So $p$ is nonzero and not a unit.
+    Suppose $p|ab$ and $p\nmid a$.
+    Consider the ideal $(a,p)=(d)$ for some $d\in R$ since $R$ is a PID.
+    Then $p=cd$ for some $c\in R$, so either $c$ or $d$ is a unit.\\
+    If $c$ is a unit, then $(p)=(d)=(a,p)$, therefore $p|a$ contradiction.
+    If $d$ is a unit, then $(a,p)=(d)=R$, so there is some $r,s$ such that $ar+ps=1$, hence $rab+sbp=b$, so $p|b$.
+\end{proof}
+\begin{proof}[Second proof]
+    Given $p\in R$ irreducible, then $(p)$ is maximal, so $R/(p)$ is a field, which is an integral domain, hence $(p)$ is a prime ideal, which means that $p$ is prime.
+\end{proof}
+\begin{definition}
+    An integral domain $R$ is called an Euclidean domain (ED) if there is a function $\phi:R\setminus\{0\}\to\mathbb Z_{\ge 0}$ (the Euclidean function) such that for any $a,b\in R$:\\
+    1. If $a,b\neq 0$ and $a|b$, then $\phi(b)\ge \phi(a)$.\\
+    2. If $b\neq 0$, then $\exists q,r>0,a=qb+r$ such that either $r=0$ or $\phi(r)<\phi(b)$.
+\end{definition}
+\begin{proposition}
+    If $R$ is an Euclidean domain, then it is a PID.
+\end{proposition}
+\begin{proof}
+    Let $\phi$ be the Euclidean function and $0\neq I\lhd R$ an ideal.
+    Choose $b\in I$ such that it is nonzero and $\phi(b)$ is minimal.
+    We shall show that $I=(b)$.
+    Note that we immediately have $(b)\subset I$.
+    For the other way, choose $0\neq a\in I$, we write $a=qb+r$ with $q,r\in R$ and either $r=0$ or $\phi(r)<\phi(b)$.
+    If $r=0$ then $a\in (b)$.
+    Otherwise, note that $r=a-qb\in I$, but $\phi(r)<\phi(b)$, contradicting the minimality of $b$.
+    So we must have $a\in (b)$, hence $I=(b)$.
+\end{proof}
+\begin{remark}
+    Note that we did not use the first criterion to define the Euclidean function in the above proof.
+    The reason for us to include that in the definition of a ED is that it allows us to describe the units in $R$ in the way that $\phi(a)=\phi(1)$ iff $a$ is unit.
+\end{remark}
+\begin{example}
+    1. $\mathbb Z$ is a ED since we can take $\phi(n)=|n|$.\\
+    2. For a field $\mathbb F$, $\mathbb F[X]$ is a ED by taking $\phi(P)=\deg P$ since we can do division with remainder in the polynomial ring of a field.\\
+    3. Consider the Gaussian integer $R=\mathbb Z[i]\le C$ by taking $\phi(a+ib)=a^2+b^2$, so $\phi$ is multiplicative therefore we get the first criterion.
+    For the second, let $z_1,z_2\in R$.
+    Consider $z_1/z_2\in\mathbb C$, which has distance strictly less than $1$ from the nearest Gaussian integer, so $z_1/z_2=q+\epsilon$ where $q\in R$ and $|\epsilon|<1$, so $z_1=qz_2+r$ where $r=\epsilon z_2=z_1-qz_2\in R$ and $\phi(r)=|\epsilon z_2|^2=|\epsilon|^2\phi(z_2)<\phi(z_2)$.
+\end{example}
+The above examples are all also PIDs by the preceding proposition.
+\begin{example}
+    1. Let $A$ be an $n\times n$ matrix in the field $\mathbb F$, and let $I$ be the set of all $f\in \mathbb F[X]$ such that $f(A)=0$.
+    Now $I$ is trivially an ideal.
+    But this ideal is principal since $\mathbb F[X]$ is a ED hence PID.
+    Suppose $I=(f)$, then for any $g\in\mathbb F[X]$ such that $g(A)=0$, we have $f|g$.
+    So $f$ is the minimal polynomial of $A$.\\
+    2. Consider $\mathbb F_2=\mathbb Z/2\mathbb Z$ and let $f(X)=X^3+X+1\in\mathbb F_2[X]$.
+    We want to show that $f$ is irreducible.
+    Suppose $f(X)=g(X)h(X)$ with $\deg g,\deg h>0$.
+    So one of $\deg g$ and $\deg f$ must be $1$ since $f$ has degree $3$, so $f$ has a root, but it does not, contradiction.\\
+    But $\mathbb F_2[X]$ is a ED hence PID, therefore $(f)$ is maximal, so we get to construct a field $\mathbb F_2[X]/(X^3+X+1)$.
+    The quotient looks like $\{aX^2+bX+c+(X^3+X+1):a,b,c\in\mathbb F_2\}$, but $a,b,c$ uniquely determines the ideal, so this is a field of order $8$.\\
+    3. (non-example) The ring $\mathbb Z[X]$ is not a PID.
+    Indeed, consider the ideal $I=(2,X)$, then $I=\{2f_1(X)+Xf_2(X):f_1,f_2\in\mathbb Z[X]\}=\{f(X)\in\mathbb Z[X]:f(0)\text{ is even}\}$.
+    Suppose $I$ is generated by some polynomial $f\in\mathbb Z[X]$, so $2=fg$ for some $g\in\mathbb Z[X]$.
+    But degrees add when polynomials multiply, hence $f,g$ has to be constant.
+    Therefore $I$ can only be $\mathbb Z[X]$ or $2\mathbb Z[X]$, but both are impossible since $1\notin I$ (so $I$ is not the entire ring) and $X\in I$ (but $X\notin 2\mathbb Z[X]$).
+\end{example}
+\subsection{Unique Factorization Domains}
+\begin{definition}
+    An integral domain $R$ is called a unique factorization domain (UFD) if\\
+    1. Every nonzero and nonunit $r\in R$ is a product of irreducibles.\\
+    2. If $p_1\cdots p_m=q_1\cdots q_n$ where $p_i,q_i$ are irreducibles, then $m=n$ and $\exists\sigma\in S_n$ such that $p_i$ is an associate with $q_{\sigma(i)}$.
+\end{definition}
+\begin{proposition}\label{irred_prime_uniq}
+    Let $R$ be an integral domain having the first property stated above, then $R$ is a UFD iff every irreducible is prime.
+\end{proposition}
+\begin{proof}
+    If $R$ is a UFD and $r\in R$ is irreducible and $p|ab$, then $pc=ab$ for some $c\in R$.
+    By the first condition, we can write $a,b,c$ as products of irreducibles, so an associate of $p$ must appear in the factorization of $a$ or $b$ by the second condition, so $p|a$ or $p|b$, hence $p$ is prime.\\
+    Suppose every irreducible is prime.
+    If $p_1\cdots p_m=q_1\cdots q_n$.
+    Now since $p_1$ is prime, then $p_1|q_i$ for some $i$.
+    But $q_i,p_1$ are both irreducible, so they are associates.
+    By reordering, we can write $i=1$, and by cancellation law, $p_2\cdots p_m=q_2\cdots q_n$.
+    The proof is finished by descent (or equivalently, induction).
+\end{proof}
+\begin{lemma}
+    Let $R$ be a PID and there is a nested sequence of ideals $I_1\subset I_2\subset\cdots$, then there exists some $N\in\mathbb N$ such that $I_n=I_N$ for every $n\ge N$.
+\end{lemma}
+\begin{remark}
+    This condition is one of the formulations of the definition of a Noetherian ring.
+\end{remark}
+\begin{proof}
+    Consider the union $I=I_1\cup I_2\cup\cdots$.
+    $I$ is obviously an ideal, so $I=(a)$ for some $a\in R$.
+    But $a\in I_N$ for some $N\in\mathbb N$, so for any $n\ge N$, we have $(a)\subset I_n\subset I=(a)$, hence $I_n=(a)=I_N$.
+\end{proof}
+\begin{theorem}
+    Every PID is a UFD.
+\end{theorem}
+\begin{proof}
+    Let $R$ be a PID.
+    By Proposition \ref{irred_prime_uniq}, since every irreducible in a PID is prime, it suffices to show the first condition of a UFD.
+    Let $x\in R$ be nonzero and nonunit.
+    Suppose $x$ cannot be written as a product of irreducibles, so in particular $x$ is not irreducible.
+    Therefore we can write $x=x_1y_1$ for nonunit $x_1,y_1$.
+    But not both of $x_1,y_1$ can be written as a product of irreducibles.
+    WLOG $x_1$ is not a product of irreducibles, also we have $(x)\subsetneq (x_1)$ since $y_1$ is not a unit.
+    Continue the process over and again gives a sequence of strictly nested ideals $(x)\subsetneq (x_1)\subsetneq\cdots$, but this is a sequence of nested ideals that does not terminate, hence contradiction to the preceding lemma.
+\end{proof}
+\begin{example}
+    We know that ED implies PID implies UFD implies integral, so we have the following table of examples:
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|l}
+            &ED&PID&UFD&Integral&\\
+            $\mathbb Z/4\mathbb Z$&&&&No&\\
+            $\mathbb Z[\sqrt{5}]$&&&No&Yes&See later.\\
+            $\mathbb Z[X]$&&No&Yes&&See later.\\
+            $\mathbb Z\left[\frac{1+\sqrt{-19}}{2}\right]$&No&Yes&&&See in Number Fields.\\
+            $\mathbb Z[i]$&Yes&&&&
+        \end{tabular}
+    \end{center}
+\end{example}
+\subsection{Greatest Common Factors and Least Common Multiples}
+\begin{definition}
+    Let $R$ be a integral domain.
+    We say $d$ is a greatest common divisor of $a_1,\ldots,a_n\in R$ if $d|a_i$ for each $i$ and if $\forall i,d'|a_i$, then $d'|d$.
+    We say $m$ is a least common multiple of $a_1,\ldots,a_n\in R$ if $a_i|d$ for each $i$ and if $\forall i,a_i|d'$, then $d|d'$.
+\end{definition}
+Both GCDs and LCMs, when they exists, they are unique up to associates.
+\begin{proposition}
+    In a UFD, both LCMs and GCDs exist.
+\end{proposition}
+\begin{proof}
+    Obvious.
+\end{proof}

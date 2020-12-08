@@ -1,0 +1,70 @@
+\section{Noetherian Rings}
+We have seen in the proof of PID implying UFD that PIDs has the ascending chain condition:
+\begin{definition}
+    A ring $R$ is said to satisfy the ascending chain condition (ACC) if any ascending chain of ideals $I_1\subset I_2\subset\cdots$ eventually terminates.
+\end{definition}
+\begin{lemma}
+    A ring $R$ satisfies ACC iff all ideals $I\in R$ are finitely generated.
+\end{lemma}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{definition}
+    A ring $R$ is called Noetherian if it satisfies ACC.
+\end{definition}
+\begin{theorem}[Hilbert's Basis Theorem]
+    If $R$ is Noetherian, then $R[X]$ is also Noetherian.
+\end{theorem}
+\begin{proof}
+    Start with an ideal $J\unlhd R[X]$.
+    Pick $f_1\in J$ with minimal degree.
+    If $J=(f_1)$, we are done.
+    Otherwise we can pick $f_2\in J\setminus (f_1)$ with minimal degree.
+    Continuing this, if $J$ is not finitely generated, then there is a nested sequence
+    $$(f_1)\subsetneq (f_1,f_2)\subsetneq\cdots, \deg f_1\le\deg f_2\le\cdots$$
+    Let $a_i$ be the leading coefficient of $f_i$, then consider a chain of ideals $(a_1)\subset (a_1,a_2)\subset\cdots$.
+    $R$ is Noetherian, so this sequence must eventually terminates, so in particular there is some $m\in\mathbb N$ such that $a_{m+1}\in(a_1,\ldots,a_m)$.
+    So $a_{m+1}=\lambda_1a_1+\cdots+\lambda_ma_m$.
+    Now consider
+    $$g(X)=\sum_{i=1}^m\lambda_iX^{\deg f_{m+1}-\deg f_i}f_i$$
+    So $g,f_{m+1}$ has the same degree and leading coefficient, so $\deg (f_{m+1}-g)<\deg f_{m+1}$.
+    But $f_{m+1}-g\in J$, so since we chose $f_{m+1}$ to have the minimal degree in $J\setminus(f_1,\ldots,f_m)$, $f_{m+1}-g\in (f_1.\ldots,f_m)$, so $f_{m+1}\in (f_1,\ldots,f_m)$, contradiction.
+\end{proof}
+\begin{corollary}
+    $R[X_1,\ldots,X_n]$ is Noetherian whenever $R$ is.
+\end{corollary}
+In particular, $\mathbb Z[X_1,\ldots,X_n],\mathbb F[X_1,\ldots,X_n]$ are Noetherian (where $\mathbb F$ is a field).
+\begin{proof}
+    Apply the preceding theorem recursively.
+\end{proof}
+\begin{example}
+    Let $R=\mathbb C[X_1,\ldots,X_n]$.
+    Let $V\subset\mathbb C^n$ be of the form
+    $$V(\mathcal F)=\{(a_1,\ldots,a_n)\in\mathbb C^n:f(a_1,\ldots,a_n)=0,\forall f\in\mathcal F\}$$
+    for some (possibly infinite) subset $\mathcal F\subset R$.
+    Let
+    $$I=\left\{\sum_{i=1}^m\lambda_if_i:m\in\mathbb N,\lambda_i\in R,f_i\in\mathcal F\right\}$$
+    Then $I\unlhd R$ and $V(I)=V(\mathcal F)$, but $R$ is Noetherian by the preceding corollary, so $I$ is finitely generated and thus $V(\mathcal F)$ can be defined by only finitely many polynomials.
+\end{example}
+\begin{lemma}
+    Any quotient ring of a Noetherian ring is again Noetherian.
+\end{lemma}
+\begin{proof}
+    Suppose $R$ is Noetherian and $I\unlhd R$ is an ideal.
+    Consider a chain of ideals $J_1\subset J_2\subset\cdots$ in $R/I$.
+    But we know the correspondence between the ideals in $R/I$ and the ideals of $R$ containing $I$, so there are ideals $I_1,I_2,\ldots$ all containing $I$ with $J_i=I_i/I$.
+    But then $I_1\subset I_2\subset\ldots$, so there is $N\in\mathbb N$ such that for any $m>N$, $I_m=I_N$, hence $J_m=I_m/I=I_N/I=J_N$, hence the sequence eventually terminates, thus $R/I$ is Noetherian.
+\end{proof}
+\begin{example}
+    1. The Gaussian integers can be written as $\mathbb Z[i]\cong\mathbb Z[X]/(X^2+1)$ hence is Noetherian.\\
+    2. If $R[X]$ is Noetherian, then $R$ is Noetherian since $R\cong R[X]/(X)$, so Hilbert's Basis Theorem is actually an ``if and only if''.
+\end{example}
+\begin{example}[Non-example]
+    We shall give examples of a non-Noetherian rings.\\
+    1. We consider the ring as the upper limit
+    $$R=\mathbb Z[X_1,X_2,\ldots]=\bigcup_{n\in\mathbb N}\mathbb Z[X_1,\ldots,X_n]$$
+    Then $(X_1)\subsetneq (X_1,X_2)\subsetneq\cdots$, so $R$ is not Noetherian.\\
+    2. Consider the ring $R\le \mathbb Q[X]$ by collecting $R=\{f\in\mathbb Q[X]:f(0)\in\mathbb Z\}$, then $R$ is obviously a ring with
+    $$(X)\subsetneq (2^{-1}X)\subsetneq (2^{-2}X)\subsetneq\cdots$$
+    3. Consider the ring $R$ of infinitely differentiable functions $[-1,1]\to\mathbb R$ under pointwise operations, this is also not Noetherian (exercise).
+\end{example}

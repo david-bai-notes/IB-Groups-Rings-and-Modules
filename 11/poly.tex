@@ -1,0 +1,105 @@
+\section{Factorization in Polynomial Rings}
+\begin{theorem}\label{ufd_poly}
+    Let $R$ be a UFD, then $R[X]$ is also a UFD.
+\end{theorem}
+\begin{remark}
+    One can apply this recursively to show that the polynomial ring in $n$ variables over a UFD is a UFD.
+\end{remark}
+In particular, $\mathbb Z[X]$ is a UFD and $\mathbb C[X_1,\ldots,X_n]$ is a UFD.\\
+In this section, we shall always assume that $R$ is a UFD.
+It is an integral domain, so it has a field of fraction $F$, so $R[X]\subset F[X]$ which is a UFD since it is a ED.
+\begin{definition}
+    The content of a polynomial $f(X)=a_0+a_1X+\cdots+a_nX^n$ for $a_i\in R$ is $c(f)=\gcd(a_0,\ldots,a_n)$.
+    We say $f$ is primitive if $c(f)$ is a unit, i.e. the coefficients are coprime.
+\end{definition}
+\begin{lemma}\label{poly_content}
+    1. Any prime element in $R$ is also prime in $R[X]$.\\
+    2. If $f,g\in R[X]$ are primitive polynomials, then $fg$ is also primitive.\\
+    3. If $f,g\in R[X]$, then $c(fg)=c(f)c(g)$ up to associates.
+\end{lemma}
+\begin{proof}
+    1. Given a prime $p\in R$, so $R/(p)$ is an integral domain.
+    For $a\in R$, let $\tilde{a}\in R/(p)$ be its image under the quotient map.
+    Define $\theta:R[X]\to R/(p)[X]$ by
+    $$a_0+a_1X+\cdots+a_nX^n\mapsto \tilde{a}_0+\tilde{a}_1X+\cdots+\tilde{a}_nX^n$$
+    which is a homomorphism.
+    So for $p|fg$ where $f,g\in R[X]$, we have $\theta(fg)=0$, so $\theta(f)\theta(g)=0$.
+    But $R/(p)[X]$ is an integral domain since $R/(p)$ is.
+    Hence WLOG $\theta(f)=0$, so $p|f$.\\
+    2. If $f,g$ are primitive but $fg$ is not, then there is some irreducible $p\in R$ that divides $fg$.
+    Since $R$ is a UFD, $p$ is prime in $R$, hence is prime in $R[X]$ by 1, hence $p|f$ or $p|g$, contradiction to their primitivity.\\
+    3. Write $f=c(f)f_0$, so $f_0$ is primitive.
+    Do the same to $g$ gives $g=c(g)g_0$ for a primitive $g_0$, so $fg=c(f)c(g)(f_0g_0)$.
+    But $f_0g_0$ is primitive by 2, so $c(fg)=c(f)c(g)$ up to associates.
+\end{proof}
+\begin{remark}
+    Take a polynomial $f$ in $F[X]$, then we can write $f=ab^{-1}f_0$ where $f_0\in R[X]$ where $a,b\in R,b\neq 0$ and $f_0$ is primitive.
+    We can just take $b$ to be a common multiple of the denominators (since $F$ is the field of fractions of $R$) and the rest follows.
+\end{remark}
+\begin{lemma}\label{primitive_div_fof}
+    Let $f,g$ be polynomials in $R[X]$ and $g$ is primitive, then if $g|f$ in $F[X]$, then $g|f$ in $R[X]$.
+\end{lemma}
+\begin{proof}
+    If $g|f$ in $F[X]$, then $f=gh$ with $h\in F[X]$.
+    Write $h=ab^{-1}h_0$ for $a,b\in R,b\neq 0$ and $h_0\in R[X]$ is primitive.
+    So $bf=agh_0$, then by taking content $bc(f)=a$, so $h=c(f)h_0\in R[X]$ which is what we wanted.
+\end{proof}
+\begin{lemma}[Gauss's Lemma]\label{gauss_poly}
+    Let $R$ be a UFD with field of fraction $F$.
+    Suppose $f\in R[X]$ be primitive and irreducible in $R[X]$, then $f$ is irreducible in $F[X]$.
+\end{lemma}
+\begin{proof}
+    Assume that $\deg f>0$ since otherwise $f$ has to be a constant.
+    Then in this case $f$ is not a unit in $F[X]$.
+    Suppose we can write $f=gh$ for $g,h\in F[X]$ with $\deg g,\deg h>0$.
+    Replacing $g,h$ by $\lambda g$ and $\lambda^{-1}h$ for some $\lambda\in F^\times$, we can assume WLOG that $g\in R[X]$ and is primitive.
+    So by the Lemma \ref{primitive_div_fof}, $g|f$ in $R[X]$, so $h\in R[X]$, contradiction.
+\end{proof}
+\begin{lemma}\label{prime_fof}
+    Let $g\in R[X]$ be primitive and is prime in $F[X]$, then $g$ is prime in $R[X]$.
+\end{lemma}
+\begin{proof}
+    Suppose $f_1,f_2\in R[X]$ and $g|f_1f_2$, then $g|f_1$ or $g|f_2$ in $R[X]$, but by Lemma \ref{primitive_div_fof} $g|f_1$ or $g|f_2$.
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{ufd_poly}]
+    Let $f\in R[X]$, write $f=c(f)f_0$ where $f_0$ is primitive.
+    Since $R$ is a UFD, we can write $c(f)$ as a product of irreducibles.
+    Also, $f_0$ can also be written as a product of irreducibles by induction on its degree.
+    So it suffices to show that every irreducible in $R[X]$ is prime.
+    Take $f\in R[X]$ irreducible, then either $f$ is constant or $f$ must be primitive.\\
+    For a constant $f$, then $f$ is prime in $R$, so it is prime in $R[X]$ by the first part of Lemma \ref{poly_content}.\\
+    For a primitive $f$, combining Lemma \ref{gauss_poly} and Lemma \ref{prime_fof} gives the result.
+\end{proof}
+\begin{theorem}[Eisenstein's Criterion]
+    Let $R$ be a UFD and $f=a_0+\cdots+a_nX^n\in R[X]$ is primitive.
+    Suppose $p\in R$ is irreducible and $p\nmid a_n$ but $p|a_i,0\le i\le n-1$ and $p^2\nmid a_0$, then $f$ is irreducible.
+\end{theorem}
+\begin{proof}
+    Suppose $f=gh$ where $g,h\in R[X]$ are not unit.
+    Since $f$ is primitive, $g,h$ both have positive degree.
+    Write $g(X)=r_0+\cdots+r_kX^k$ and $h(X)=s_0+\cdots+s_lX^l$ where $k+l=n$.
+    Now $a_n=r_ks_l$, so $p\nmid r_k,p\nmid s_l$.
+    Also $a_0=r_0s_0$, so exactly one of $r_0,s_0$ is divisible by $p$ since $R$ is a UFD.
+    Assume WLOG $p|r_0$.
+    Choose $j$ such that $p|r_0,\cdots,p|r_{j-1}$ but $p\nmid r_j$.
+    Note that we can choose this since $p\nmid r_k$, in particular $j\le k<n$.
+    But
+    $$a_j=r_0s_j+r_1s_{j-1}+\cdots+r_js_0\in r_js_0+(p)$$
+    So $a_j$ is not divisible by $p$ since $R$ is a UFD, so $p\nmid a_j$, contradiction.
+\end{proof}
+\begin{example}
+    Consider $f(X)=X^3+2X+5\in\mathbb Z[X]$.
+    If $f$ is reducible, then it must has a root, which is impossible since the only possibilities of root are $\pm 1,\pm 5$.
+    By Guass's Lemma, this is also irreducible in $\mathbb Q$.
+    Hence $\mathbb Q[X]/(f)$ is a field since $\mathbb Q[X]$ is a PID and $f$ is irreducible.
+\end{example}
+\begin{example}
+    1. Let $p$ be a prime number, then the polynomial $X^n-p$ is irreducible by Eisenstein's criterion, hence it is also irreducible in $\mathbb Q[X]$, so again $\mathbb Q[X]/(X^n-p)$ is a field.\\
+    2. Let $f(X)=X^p+\cdots+X+1\in\mathbb Z[X]$ where $p$ is prime.
+    Although we cannot apply Eisenstein's criterion directly, we can do a substitution.
+    \begin{align*}
+        f(X+1)&=(X+1)^p+\cdots+(X+1)+1=\frac{(X+1)^p-1}{(X+1)-1}\\
+        &=X^p+\binom{p}{1}X^{p-1}+\cdots+\binom{p}{p-2}X+\binom{p}{p-1}
+    \end{align*}
+    where we can apply Eisenstein's criterion to see that $f(X+1)$ is irreducible, hence $f(X)$ is also irreducible.
+\end{example}

@@ -1,0 +1,71 @@
+\section{Some Matrix Groups}
+\begin{definition}
+    Let $\mathbb F$ be a field (e.g. $\mathbb C,\mathbb Z/p\mathbb Z$), then we define
+    $$\operatorname{GL}_n(\mathbb F)=\{M\in\mathcal M_{n\times n}(\mathbb F):\det M\neq 0\}$$
+    $$\operatorname{SL}_n(\mathbb F)=\{M\in\mathcal M_{n\times n}(\mathbb F):\det M\neq 0\}=\ker\det|_{\operatorname{GL}_n(\mathbb F)}\unlhd\operatorname{GL}_n(\mathbb F)$$
+\end{definition}
+Note that $Z=Z(\operatorname{GL}_n(\mathbb F))$ is the set of scalar matrices.
+\begin{definition}
+    $$\operatorname{PGL}_n(\mathbb F)=\operatorname{GL}_n(\mathbb F)/Z$$
+    $$\operatorname{PSL}_n(\mathbb F)=\operatorname{SL}_n(\mathbb F)/(Z\cap \operatorname{SL}_n(\mathbb F))\cong Z\operatorname{SL}_n(\mathbb F)/Z\le\operatorname{PGL}_n(\mathbb F)$$
+\end{definition}
+\begin{example}
+    Let $G=\operatorname{GL}_n(\mathbb Z/p\mathbb Z)$.
+    A list of $n$ vectors in $(\mathbb Z/p\mathbb Z)^n$ are the columns of some $A\in G$ iff they are linearly independent.
+    Hence
+    $$|G|=(p^n-1)(p^n-p)(p^n-p^2)\cdots (p^n-p^{n-1})=p^{n(n-1)/2}\prod_{i=1}^n(p^i-1)$$
+    So the Sylow $p$-subgroups have order $p^{n(n-1)/2}$.
+    Indeed, the subgroup of upper-triangular matrices with $1$'s on the diagonal gives one (hence all by conjugation) of such subgroups.
+\end{example}
+Just like $\operatorname{PSL}_2(\mathbb C)$ act on $\mathbb C\cup\{\infty\}$ by Mobius transformations, the group $\operatorname{PSL}_2(\mathbb Z/p\mathbb Z)$ can act on $\mathbb Z/p\mathbb Z\cup\{\infty\}$ in this way as well:
+$$\begin{pmatrix}
+    a&b\\
+    c&d
+\end{pmatrix}:z\mapsto\frac{az+b}{cz+d}$$
+where the infinity cases are dealt with in the same way.
+\begin{lemma}\label{psl_mobius}
+    The permutation representation $\operatorname{PSL}_2(\mathbb Z)\to S_{p+1}$ by Mobius transformation is injective.
+\end{lemma}
+And indeed, by considering the size, for $p=2,3$, this is an isomorphism.
+\begin{proof}
+    Suppose there is some $a,b,c,d$ such that $\forall z\in\mathbb C,z=(az+b)/(cz+d)$, then putting $z=0$ gives $b=0$, and $z=\infty$ gives $c=0$, and $z=1$ gives $a=d$, but these only gives one element that is the identity of $\operatorname{PSL}_2(\mathbb Z/p\mathbb Z)$.
+    Done.
+\end{proof}
+\begin{lemma}
+    If $p$ is an odd prime, then $|\operatorname{PSL}_2(\mathbb Z/p\mathbb Z)|=p(p-1)(p+1)/2$.
+\end{lemma}
+\begin{proof}
+    We already know that
+    $$|\operatorname{GL}_2(\mathbb Z/p\mathbb Z)|=p(p-1)(p^2-1)$$
+    Then by Isomorphism Theorem
+    $$|\operatorname{SL}_2(\mathbb Z/p\mathbb Z)|=|\operatorname{GL}_2(\mathbb Z/p\mathbb Z)|/|(\mathbb Z/p\mathbb Z)^\star|=p(p-1)(p+1)$$
+    And
+    $$|\operatorname{PSL}_2(\mathbb Z/p\mathbb Z)|=|\operatorname{SL}_2(\mathbb Z/p\mathbb Z)|/|\{\pm I\}|=\frac{p(p-1)(p+1)}{2}$$
+    Here $Z\cap\operatorname{SL}_2(\mathbb Z/p\mathbb Z)=\{\pm I\}$ because $a^2\equiv 1\pmod{p}$ only has two solutions, namely $\pm 1$, as $p$ is prime.
+\end{proof}
+Note that for $p=2$, things go wrong on the fact that in this case $I=-I$.
+\begin{example}
+    Consider the group $G=\operatorname{PSL}_2(\mathbb Z/5\mathbb Z)$, then $|G|=60=2^2\cdot3\cdot5$.
+    We shall show that $G$ is simple, and in fact, it is isomorphic to $A_5$.\\
+    Let $G$ act on $\mathbb Z/5\mathbb Z\cup\{\infty\}$ by Mobius transformation.
+    By Lemma \ref{psl_mobius}, we have an injective group homomorphism $\phi:G\to S_6$.\\
+    Our first claim that, if we embed $G$ into $S_6$, then $G\le A_6$.
+    Equivalently the map $\psi: G\to S_6\to \{\pm 1\}$ is trivial, where the first arrow is $\phi$ and the second is the signature.\\
+    Note that for odd $m$, we have $\psi(g)=1\iff\psi(g^m)=1$, so it suffices to study the elements of order being a power of $2$, but this means to study the elements contained in every Sylow $2$-subgroup of $G$, but all of them are conjugate, it is enough to check one of them (since $\{\pm 1\}$ is abelian).
+    We spot the following one
+    $$H=\left\{\pm\begin{pmatrix}
+        2&0\\
+        0&3
+    \end{pmatrix},
+    \pm\begin{pmatrix}
+        0&1\\
+        4&0
+    \end{pmatrix}\right\}$$
+    By simple computation, $\psi$ does vanish on $H$, so indeed we have $G\le A_6$.
+    By a result in Example Sheet 1, if $G\le A_6$ and $|G|=60$, then $G\cong A_5$, which completes the proof.
+\end{example}
+The following facts will not be proved in the course, but are very important:
+\begin{proposition}
+    $\operatorname{PSL}_n(\mathbb Z/p\mathbb Z)$ is simple for $n\ge 2$ and $p$ prime except if $(n,p)=(2,2)$ or $(n,p)=(2,3)$.
+    Also, the two smallest nonabelian simple groups are $A_5\cong\operatorname{PSL}_2(\mathbb Z/5\mathbb Z)$ with order $60$ and $\operatorname{PSL}_2(\mathbb Z/7\mathbb Z)\cong\operatorname{GL}_3(\mathbb Z/2\mathbb Z)$ with order $168$.
+\end{proposition}

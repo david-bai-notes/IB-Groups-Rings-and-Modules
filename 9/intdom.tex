@@ -1,0 +1,116 @@
+\section{Integral Domains, Maximal and Prime Ideals}
+\subsection{Integral Domains}
+\begin{definition}
+    An integral domain is a ring $R$ with $0\neq 1$ and $ab=0$ implies $a=0$ or $b=0$.
+\end{definition}
+\begin{definition}
+    In a ring $R$, an element $a\neq 0$ is called a zero divisor if $\exists b\in R,b\neq 0,ab=0$.
+\end{definition}
+So an integral domain is a ring without zero divisors.
+\begin{example}
+    1. All fields are integral domains.\\
+    2. Any subring of an integral domain is an integral domain.
+    Hence $\mathbb Z[i]\le\mathbb C$ is an integral domain.\\
+    3. (non-example) $\mathbb Z\times\mathbb Z$ is not an integral domain since $(1,0)(0,1)=(0,0)$.
+\end{example}
+\begin{lemma}
+    If $R$ is an integral domain, so is $R[X]$.
+\end{lemma}
+\begin{proof}
+    Let $f,g\in R[X]$ be nonzero polynomials.
+    Suffice to show that $\deg(fg)=\deg(f)+\deg(g)$.
+    Indeed, if
+    $$f(X)=\sum_{k=0}^na_kX^k,g(X)=\sum_{k=0}^mb_kX^k,a_n,b_m\neq 0$$
+    Then $f(X)g(X)=a_nb_mX^{n+m}+\cdots$, but since $R$ is an integral domain, $a_nb_m\neq 0$, therefore $\deg(fg)=n+m=\deg(f)+\deg(g)$.
+\end{proof}
+\begin{lemma}
+    Let $R$ be an integral domain and $0\neq f\in R[X]$.
+    Then the number of roots of $f$ in $R$ is at most $n$.
+\end{lemma}
+\begin{proof}
+    Exercise.
+\end{proof}
+\begin{theorem}
+    Any finite subgroup of the multiplicative group of a field is cyclic.
+\end{theorem}
+\begin{example}
+    $(\mathbb Z/p\mathbb Z)^\times$ is cyclic.\\
+    Also, $U_m=\{x^m=1:x\in\mathbb C\}$ is cyclic.
+\end{example}
+\begin{proof}
+    Let $F$ be a field and $A$ a finite subgroup of $F^\times$.
+    So $A$ is a finite abelian group, and if it is not cyclic, then by Theorem \ref{fin_abe_struct}, it contains a subgroup isomorphic to $C_m\times C_m$ for some $m\ge 2$, but then $f(X)=X^m-1$ has at least $m^2$ roots, contradicting the preceding lemma.
+\end{proof}
+\begin{proposition}
+    Any finite integral domain is a field.
+\end{proposition}
+\begin{proof}
+    Consider a finite integral domain $R$ and $0\neq a\in\mathbb R$.
+    The map $\phi:R\to R$ by $r\mapsto ra$.
+    This map is injective since $R$ is an integral domain, but then it is automatically surjective since $R$ is finite.
+    So there is some $r$ such that $ra=1$.
+\end{proof}
+Combining these two gives that every finite integral domain has cyclic multiplicative group.
+\begin{theorem}
+    Let $R$ be an integral domain, then there is a field $F$ with the following properties:\\
+    1. $R\le F$.\\
+    2. Every element of $F$ can be written as $ab^{-1}$ where $a,b\in R$.
+\end{theorem}
+Consequently, such an $F$ is the unique minimal field containing $R$.
+$F$ is called the field of fractions.
+\begin{example}
+    The field of fractions of $\mathbb Z$ is $\mathbb Q$.
+\end{example}
+\begin{proof}
+    Consider the set $F=(R\times R\setminus\{0\})/\sim$ where
+    $$(a,b)\sim (c,d)\iff ad=bc$$
+    We write the equivalence class containing $(a,b)$ as $a/b$.
+    One can show that this is an equivalence relation since $R$ is an integral domain and that the following operations are well-defined:
+    $$(a/b)+(c/d)=(ad+bc)/(bd),(a/b)(c/d)=(ac)/(bd)$$
+    $F$ is obviously a field under these two operations.
+    Also we can embed $R$ into $F$ by $r\mapsto r/1$ and we have $a/b=(a/1)(1/b)=(a/1)(b/1)^{-1}=ab^{-1}$, so this is the field we want.
+\end{proof}
+\begin{example}
+    1. The field of fraction of the Gaussian integers $\mathbb Z[i]$ is the set $\{ab^{-1}:a,b\in\mathbb Z[i]\le\mathbb C\}$.
+    In fact, $F$ is exactly numbers in the form $p+iq,p,q\in\mathbb Q$.\\
+    2. The field of fraction of the polynomial ring $R[X]$ over a ring $R$ is called the field of fractions $R(X)$ of $R$.
+\end{example}
+\subsection{Prime and Maximal Ideals}
+\begin{lemma}
+    A ring $R$ is a field iff its only ideas are $\{0\},R$.
+\end{lemma}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{definition}
+    Let $S$ be a collection of subsets of a set $X$.
+    $A\in S$ is maximal if there does not exists $B\in S$ such that $A\subsetneq B$.\\
+    An ideal $I\unlhd R$ is maximal if it is maximal in the set of all proper ideas $\mathcal I_R=\{J\unlhd R:\{0\}\subsetneq J\subsetneq R\}$.
+\end{definition}
+\begin{proposition}
+    Let $I\unlhd R$, then $R/I$ is a field iff $I$ is maximal.
+\end{proposition}
+\begin{proof}
+    $R/I$ is a field iff $I/I,R/I$ are the only ideals of $R/I$, which happens iff $I$ and $R$ are the only ideals of $R$ containing $I$ iff $I$ is maximal.
+\end{proof}
+\begin{definition}
+    An ideal $I\unlhd R$ is prime if $I\neq R$ and $ab\in I$ implies that at least one of $a,b$ is in $I$.
+\end{definition}
+\begin{example}
+    The prime ideals of $\mathbb Z$ are $p\mathbb Z$ with $p$ prime or $0$.
+    Incidentally (or not), $p\mathbb Z$ are also all maximal ideals of $\mathbb Z$.
+\end{example}
+\begin{proposition}
+    Let $I\unlhd R$, then $I$ is prime iff $R/I$ is an integral domain.
+\end{proposition}
+\begin{proof}
+    $I$ is prime iff $ab\in I\implies a\in I\lor b\in I$ iff $ab+I=I\implies a+I=I\lor b+I=I$ iff $I$ is an integral domain.
+\end{proof}
+\begin{remark}
+    Combining the results reveals that every maximal ideal is prime.
+\end{remark}
+\begin{remark}
+    If $\operatorname{char}(R)=n\ge 2$, then $\mathbb Z/n\mathbb Z\le R$, hence $n$ is prime.
+    In particular, the characteristic of a field $F$ is either $0$ or a prime number.
+    When the field has characteristic $0$, then $\mathbb Z\le F$, hence $\mathbb Q\le F$ since $F$ is a field.
+\end{remark}
